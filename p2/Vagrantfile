@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
 		vb.cpus = 1
 	end
 
-	config.vm.provision "shell", inline: <<-SHELL
-		curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 664 --flannel-iface eth1
+	config.vm.provision "shell", privileged: false, inline: <<-SHELL
+		curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 664 --flannel-iface eth1 && kubectl apply -f /vagrant/confs/
 	SHELL
 end
