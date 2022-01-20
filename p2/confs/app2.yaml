@@ -1,48 +1,51 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-two
+   name: app-two
 spec:
-  selector:
-    matchLabels:
-      app: app-two
-  replicas: 3
-  template:
-    metadata:
-      labels:
-        app: app-two
-    spec:
-      containers:
-        - name: nginx
-          image: nginx:stable
-          ports:
-            - containerPort: 80
+   selector:
+      matchLabels:
+         app: app-two
+   replicas: 3
+   template:
+      metadata:
+         labels:
+            app: app-two
+      spec:
+         containers:
+            - name: hey
+              image: mesafi/hey
+              ports:
+                 - containerPort: 8080
+              env:
+                 - name: MESSAGE
+                   value: app two
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-two
+   name: app-two
 spec:
-  ports:
-    - port: 80
-      protocol: TCP
-      targetPort: 80
-  selector:
-    app: app-two
+   ports:
+      - port: 80
+        protocol: TCP
+        targetPort: 8080
+   selector:
+      app: app-two
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: app-two
+   name: app-two
 spec:
-  rules:
-    - host: app2.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: app-two
-                port:
-                  number: 80
+   rules:
+      - host: app2.com
+        http:
+           paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                   service:
+                      name: app-two
+                      port:
+                         number: 80
