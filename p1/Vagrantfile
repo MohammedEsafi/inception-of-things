@@ -31,11 +31,9 @@ Vagrant.configure("2") do |config|
 			vb.memory = "1024"
 			vb.cpus = 1
 		end
-
-		control.vm.provision "file", source: "#{Dir.getwd}/token", destination: "/home/vagrant/"
 		
 		control.vm.provision "shell", inline: <<-SHELL
-			curl -sfL https://get.k3s.io | sh -s - agent --server https://192.168.42.110:6443 --token-file /home/vagrant/token --flannel-iface eth1
+			curl -sfL https://get.k3s.io | sh -s - agent --server https://192.168.42.110:6443 --token-file /vagrant/token --flannel-iface eth1
 		SHELL
 	end
 
