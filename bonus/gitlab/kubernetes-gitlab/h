@@ -1,0 +1,4 @@
+
+kubectl create -f gitlab/gitlab-svc.yml
+kubectl create -f gitlab/gitlab-svc-nodeport.yml
+kubectl create -f gitlab/gitlab-deployment.yml

@@ -1,0 +1,11 @@
+# create gitlab namespace
+kubectl create -f gitlab-ns.yml
+
+# deploy redis
+kubectl create -f gitlab/redis-svc.yml
+kubectl create -f gitlab/redis-deployment.yml
+
+# deploy postgres
+kubectl create -f gitlab/postgresql-svc.yml
+kubectl create -f gitlab/postgresql-deployment.yml
+# deploy gitlab itself
