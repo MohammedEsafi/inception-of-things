@@ -6,7 +6,7 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels:    
+    matchLabels:
       name: gitlab-postgresql
   template:
     metadata:
@@ -21,7 +21,7 @@ spec:
         - name: DB_USER
           value: gitlab
         - name: DB_PASS
-          value: +BP52QIxpT/flVCMpL3KXA==
+          value: 8Br55n@e0$Jw6W39@6OlTWKY%N$4IlsiOi!h
         - name: DB_NAME
           value: gitlab_production
         - name: DB_EXTENSION
