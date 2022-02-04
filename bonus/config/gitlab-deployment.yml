@@ -40,8 +40,14 @@ spec:
         - name: GITLAB_SSH_PORT
           value: "1022"
 
-        - name: GITLAB_DEFAULT_THEME
-          value: 3
+        - name: SSL_SELF_SIGNED
+          value: "true"
+        - name: SSL_CERTIFICATE_PATH
+          value: "/vagrant/certs/gitlab.crt"
+        - name: SSL_KEY_PATH
+          value: "/vagrant/certs/gitlab.key"
+        - name: SSL_DHPARAM_PATH
+          value: "/vagrant/certs/dhparam.pem"
 
         - name: DB_TYPE
           value: postgres
@@ -81,6 +87,7 @@ spec:
             port: 80
           initialDelaySeconds: 15
           timeoutSeconds: 1
+
       volumes:
       - name: data
         emptyDir: {}

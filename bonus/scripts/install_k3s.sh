@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-apt update && apt upgrade -y &>/dev/null;
+apt update &>/dev/null && apt upgrade -y &>/dev/null;
 
 echo \# installing k3s
 curl -sfL https://get.k3s.io | sh -;
-echo alias k=kubectl >> ~/.bashrc
+
+kubectl delete -f /var/lib/rancher/k3s/server/manifests/traefik.yaml
+
 echo export KUBECONFIG=/etc/rancher/k3s/k3s.yaml >> ~/.bashrc
